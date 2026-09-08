@@ -73,9 +73,10 @@ class Lesson:
 @dataclass
 class Finding:
     """A specific, citable reason a beat is not simply TAUGHT."""
-    kind: str                       # NUMERIC_DRIFT | COUNT_DRIFT | OMITTED_POINT | REORDERED | ...
+    kind: str                       # NUMERIC_DRIFT | ON_SCREEN_CONFLICT | REORDERED | ...
     detail: str
     evidence: str = ""
+    severity: str = "high"          # high = will ship wrong; low = probably a rewording
 
 
 @dataclass
@@ -149,6 +150,9 @@ class Asset:
     owner: str
     depends_on: list[str]
     on_screen_text: list[str] = field(default_factory=list)
+    # Label-type assets carry identifiers ("Dana Okafor", "Chapter: Close"), not claims
+    # the instructor says aloud, so checking them against the audio is pure noise.
+    verify_text: bool = True
 
 
 # --- Change-order verbs -----------------------------------------------------

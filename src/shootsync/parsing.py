@@ -15,7 +15,7 @@ _BEAT_RE = re.compile(r"^###\s+(?P<id>[A-Za-z0-9_.-]+)\s*[—–-]\s*(?P<title>.
 _ATTR_RE = re.compile(r"^(est|type|must_cover)\s*:\s*(.+?)\s*$", re.I)
 _TC_RE = re.compile(
     r"^\[(?:(?P<h>\d{1,2}):)?(?P<m>\d{1,2}):(?P<s>\d{2})\]\s*"
-    r"(?:(?P<speaker>[A-Z][A-Z0-9 ._-]{1,24}):\s*)?(?P<text>.*)$"
+    r"(?:(?P<speaker>[A-Z][A-Z0-9 ._-]{0,24}):\s*)?(?P<text>.*)$"
 )
 
 

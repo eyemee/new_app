@@ -204,9 +204,13 @@ class LocalReconciler:
             ks = sorted(block_of_beat[bi])
             lo, hi = blocks[ks[0]][0], blocks[ks[-1]][1]
             here = {t for j in range(lo, hi + 1) for t in seg_tokens[j]}
+            # The term itself breaks IDF ties: sets iterate in hash order, which Python
+            # randomises per process, and without a tiebreak the chosen terms — and so
+            # the verdict on a borderline beat — could differ between two runs on
+            # identical input.
             distinctive = sorted(
                 (t for t in set(tokenize(lesson.beats[bi].text)) if t in spoken_anywhere),
-                key=lambda t: -model.idf.get(t, model.default_idf),
+                key=lambda t: (-model.idf.get(t, model.default_idf), t),
             )[: self.support_terms]
             if sum(1 for t in distinctive if t in here) < self.min_support:
                 for k in ks:
@@ -455,7 +459,18 @@ class LocalReconciler:
 
     @staticmethod
     def _title_for(window: str) -> str:
-        """Name unplanned content by its most distinctive repeated terms."""
-        counts = Counter(t for t in tokenize(window) if len(t) > 3)
-        top = [w for w, _ in counts.most_common(4)]
-        return "Unplanned: " + ", ".join(top) if top else "Unplanned content"
+        """Label unplanned content with its opening words.
+
+        A producer scanning an edit sheet needs to recognise the moment, and the
+        instructor's own first line does that better than a bag of keywords. Any
+        proper noun in the passage usually is the moment, so lead with it.
+        """
+        opening = " ".join(window.split())
+        proper = [
+            w.strip(".,;:?!\u2019'\u201d\"")
+            for w in opening.split()[1:]
+            if w[:1].isupper() and w.strip(".,;:?!").isalpha() and len(w) > 3
+        ]
+        head = opening[:64].rsplit(" ", 1)[0] if len(opening) > 64 else opening
+        name = Counter(proper).most_common(1)[0][0] if proper else ""
+        return f"Unplanned — {name}: \u201c{head}\u2026\u201d" if name else f"Unplanned — \u201c{head}\u2026\u201d"
