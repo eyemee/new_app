@@ -4,7 +4,11 @@ Reconciles a master lesson plan with what the instructor actually taught on shoo
 day, and turns the difference into per-asset work orders for design, edit and
 curriculum.
 
-The design rationale is in **[docs/DESIGN.md](docs/DESIGN.md)**. The short version:
+**[The approach](https://claude.ai/code/artifact/2d52c125-d79b-4c45-9a56-6bc802349ae2)** ·
+**[Live review console](https://claude.ai/code/artifact/1189e6c7-29df-4e11-8374-d3e3176cef1b)**
+— the console is real output from the sample shoot, not a mock-up.
+
+The full design rationale is in **[docs/DESIGN.md](docs/DESIGN.md)**. The short version:
 after a shoot the plan is fiction, the footage is truth, and everything downstream is
 still bound to the plan. ShootSync produces an **As-Taught Record** and rebinds
 downstream work to it.
