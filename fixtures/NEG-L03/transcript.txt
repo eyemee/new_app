@@ -1,0 +1,129 @@
+# Raw shoot transcript — NEG-L03 — take 2 (full run) — 2026-09-02
+# Auto-transcribed, lightly cleaned. Timecodes are source-file timecodes.
+
+[00:00:03] DANA: Okay. A few years ago I coached someone through a final-round interview, and she was brilliant, genuinely the strongest candidate they'd seen.
+[00:00:14] DANA: And at the end the hiring manager leaned back and asked the question. What are you looking for, compensation-wise?
+[00:00:23] DANA: And she said a number. One number, one sentence, maybe two seconds of speech.
+[00:00:31] DANA: We found out later they had approval for twelve thousand dollars more than what she said. Twelve thousand dollars, gone, in a sentence.
+[00:00:44] DANA: So here's the question I want sitting in your head for the next twenty minutes. Who should say the number first?
+[00:00:54] DANA: Hold that. Because the answer is more interesting than yes or no.
+
+[00:01:06] DANA: Let me tell you what actually happened in that room, mechanically.
+[00:01:13] DANA: There's an effect called anchoring. And the short version is this — the first number that enters a negotiation doesn't just start the conversation, it bends every number that comes after it.
+[00:01:28] DANA: The reason is that human beings are terrible at valuing things from scratch. We almost never do that. What we do instead is we find a starting point and we adjust away from it.
+[00:01:43] DANA: And the adjusting is the problem. We don't adjust enough. We always stop too early, too close to wherever we started.
+[00:01:54] DANA: I want to be really precise about this because people hear "bias" and they hear "stupid". That is not what this is.
+[00:02:05] DANA: This is not a stupidity failure. This is an adjustment failure. Smart, careful, well-informed people do this, and we'll see that in a second.
+[00:02:18] DANA: The number is a gravity well. You can walk away from it, but you're walking uphill the whole time.
+[00:02:29] DANA: So in that interview, the moment she said her number, the entire rest of that negotiation was happening in a space she had defined. And she defined it too low.
+[00:02:44] DANA: That's anchoring.
+
+[00:03:12] DANA: Okay, so let me tell you where we're going, because I jumped straight into the mechanism there.
+[00:03:20] DANA: By the end of this lesson you should be able to do three things.
+[00:03:26] DANA: One, explain why anchoring works, to yourself or to someone else, in a sentence.
+[00:03:34] DANA: Two, you'll have a set of concrete levers — actual moves — for setting an anchor deliberately instead of accidentally.
+[00:03:45] DANA: And three, you'll know what to do when somebody anchors you first, which happens more often than the other way around.
+[00:03:56] DANA: Right. Evidence.
+
+[00:04:08] DANA: There's a study I come back to constantly. Northcraft and Neale. They took real estate appraisers — professionals, this is their job —
+[00:04:22] DANA: and they walked them through the same property. Same house, same everything. The only thing they changed was the listing price on the sheet.
+[00:04:35] DANA: And then they asked for an appraisal.
+[00:04:41] DANA: And the appraisals moved. Between the low listing condition and the high listing condition, the valuations shifted by, I want to say, about a third. Somewhere in that neighbourhood.
+[00:04:58] DANA: Which is an enormous amount of money on a house.
+[00:05:04] DANA: But here's the part that gets me every time. They asked the appraisers afterwards whether the listing price had affected their judgement.
+[00:05:16] DANA: And they said no. Overwhelmingly, no. They said they'd ignored it. They were confident about that.
+[00:05:26] DANA: These are trained experts, with a professional methodology, who did not believe the anchor had touched them. And it had moved their number by a third.
+[00:05:40] DANA: That's the study. That's why I don't think of this as a soft skill.
+
+[00:06:02] DANA: Which brings me to the thing people always ask, which is: fine, but now I know about it. Doesn't that fix it?
+[00:06:14] DANA: No. Sorry. It really doesn't.
+[00:06:19] DANA: Awareness helps a bit. The effect gets slightly smaller when you know it's happening. But it does not go away, and it does not go away for experts either — that's the whole point of the appraiser study.
+[00:06:37] DANA: So you cannot willpower your way out of this one. You can't just decide to be un-anchored.
+[00:06:47] DANA: What you can do is have a process. That's the actual lesson. Process beats willpower, every time, in this domain.
+[00:07:00] DANA: So let's talk about the process.
+
+[00:07:24] DANA: I'm going to give you the levers. These are the things you actually change when you set an anchor.
+[00:07:33] DANA: And I want to start with the one nobody uses, because it's the highest leverage and it costs you nothing.
+[00:07:42] DANA: Justification. You attach a reason to the number.
+[00:07:49] DANA: Not "I'd like a hundred and ten." Instead: "I'd like a hundred and ten, because that's where the market is for someone shipping at this scope."
+[00:08:03] DANA: Now here's what's strange. The reason does not have to be strong.
+[00:08:10] DANA: It doesn't have to be airtight. It doesn't have to be something they'd agree with. It just has to be there.
+[00:08:19] DANA: A number with a because-clause attached to it gets defended enormously better than a naked number. A naked number is just a preference. A justified number is a position.
+[00:08:35] DANA: And the difference in how hard people push back on those two things is not small.
+[00:08:44] DANA: So: never say a number without saying because. That's lever one.
+
+[00:09:36] DANA: Lever two. Precision.
+[00:09:41] DANA: Do not say fifty thousand. Say forty-seven five.
+[00:09:47] DANA: Round numbers sound like you picked them. Precise numbers sound like you calculated them.
+[00:09:56] DANA: And people concede against a precise number much more slowly, because they assume there's arithmetic underneath it, and they don't know which part of the arithmetic to argue with.
+[00:10:11] DANA: Fifty thousand invites "how about forty-five". Forty-seven five invites "how did you get to forty-seven five", which is a completely different conversation, and it's a conversation you've prepared for.
+[00:10:28] DANA: Precision is doing two jobs at once. It's signalling research, and it's slowing the concession rate.
+[00:10:39] DANA: I see people round their numbers off to sound confident. It does the opposite.
+
+[00:11:34] DANA: Lever three, and this one has a piece bolted onto it that I want you to treat as part of the same move.
+[00:11:44] DANA: Range. Bracketing.
+[00:11:48] DANA: Instead of one number, you give a range — and the bottom of your range is your target. Not the middle. The bottom.
+[00:11:59] DANA: They hear the bottom. That's what lands. But the existence of the range makes you sound flexible instead of rigid, and that matters for the relationship.
+[00:12:13] DANA: Now — the bolted-on piece.
+[00:12:17] DANA: When you say the range, you stop talking.
+[00:12:22] DANA: I mean it. Full stop. Silence.
+[00:12:27] DANA: Because what most people do, and I have done this, is they say the number and then they immediately keep going. "...but obviously that's negotiable, and I'm flexible, and it depends on the package..."
+[00:12:44] DANA: You just negotiated against yourself and they didn't even have to speak. The four seconds after you name a number are the most expensive four seconds in the conversation.
+[00:12:58] DANA: So the range only works if you shut up after it. Those two things are one move. Don't separate them.
+[00:13:10] DANA: So that's three levers. Justification, precision, and range-with-silence.
+[00:13:19] DANA: Three moves. That's the whole toolkit. If you do those three things you are ahead of almost everyone you will ever negotiate with.
+
+[00:14:06] DANA: Actually — can I tell you about Marcus? I want to tell you about Marcus, because this is the clearest version of this I've ever watched happen.
+[00:14:18] DANA: Marcus is a client of mine, and he goes to buy a car. And Marcus has done the homework, he knows what the car is worth, he's got a number in his head.
+[00:14:32] DANA: And he walks in and the salesperson doesn't talk about price at all. Doesn't mention it. Talks about the car for forty minutes.
+[00:14:44] DANA: And then right at the end, almost as an afterthought, he says: "you know, the last one of these I sold went for thirty-one."
+[00:14:55] DANA: He's not making an offer. He's not asking Marcus for anything. He's just telling him a fact about a different car.
+[00:15:05] DANA: And Marcus told me afterwards, he said, the number in my head just moved. He said, I could feel it move.
+[00:15:15] DANA: His number had been twenty-eight. And after that sentence, twenty-eight felt aggressive to him. Twenty-eight felt like he'd be insulting the guy.
+[00:15:28] DANA: Nothing changed about the car. Nothing changed about the market. One sentence about an unrelated transaction, and his own target became embarrassing to him.
+[00:15:42] DANA: This is what I want you to take from this more than anything else today.
+[00:15:48] DANA: The anchor does not have to be an offer. It doesn't have to be aimed at you. It can be a fact, an aside, a story about somebody else.
+[00:16:01] DANA: If a number enters the room, it is doing work. Whether or not anyone intended it to.
+[00:16:10] DANA: Marcus paid thirty. He paid two thousand dollars over his own researched number, because a stranger mentioned a different car.
+[00:16:22] DANA: Watch for loose numbers. They are never loose.
+
+[00:16:48] DANA: Alright, let's actually do one. Priya, you're the hiring manager, I'm the candidate. Give me the question.
+[00:16:58] PRODUCER: So, Dana — what are you looking for in terms of compensation?
+[00:17:04] DANA: Uh, I was thinking somewhere around a hundred thousand? But I'm flexible on that, obviously, and I'd want to see the whole package first.
+[00:17:16] DANA: Okay, stop. That's the weak version. Let's count what went wrong there.
+[00:17:23] DANA: Round number. No reason attached. And then I kept talking and gave away the position before she said a word.
+[00:17:33] DANA: Three levers, zero used. Let's run it again. Same question, Priya.
+[00:17:41] PRODUCER: What are you looking for in terms of compensation?
+[00:17:46] DANA: I'm looking at a hundred and twelve to a hundred and twenty, because that's the range I'm seeing for people running this scope with a team attached.
+[00:17:59] DANA: [silence]
+[00:18:07] DANA: [silence continues]
+[00:18:14] PRODUCER: ...okay. I think we can work with the lower end of that.
+[00:18:21] DANA: And there it is. Notice what just happened. Priya went to the bottom of my range, which is exactly where I wanted to land.
+[00:18:33] DANA: Precise numbers. A because-clause. And then nothing — I said nothing for eight seconds and it felt like an hour, and she filled it.
+[00:18:47] DANA: That silence is the hardest part to teach and the easiest part to do, because doing it is literally not doing anything.
+[00:18:58] DANA: Let's run it one more time and I want you to push back harder, Priya.
+[00:19:05] PRODUCER: That's above the band we had in mind for this role.
+[00:19:11] DANA: I understand. Help me understand how the band was set, because the scope we discussed looks like the upper end of it to me.
+[00:19:22] DANA: See — I didn't move my number. I asked about theirs. The anchor stays where it is.
+[00:19:32] DANA: Most people, when they hear "that's above our band", they immediately come down. You don't have to. "That's above our band" is information, it is not a rejection.
+[00:19:47] DANA: Okay, good. Thank you Priya.
+
+[00:20:36] DANA: Let me flag the mistakes I see most, because you will make these.
+[00:20:44] DANA: First one. Anchoring before you have information. If you genuinely don't know what the range is, a confident anchor is just a confident guess, and precision makes a guess worse, not better.
+[00:21:00] DANA: You have to earn the right to anchor by doing the homework.
+[00:21:07] DANA: Second one, and this is the most common. People anchor inside their own range.
+[00:21:16] DANA: They decide they want a hundred and twenty, and then they open at a hundred and twenty, and now the only direction the conversation can go is down. You anchor at the edge, not at the target.
+[00:21:32] DANA: If your target is the bottom of your range, your range has to start at your target. That's the whole geometry of it.
+[00:21:43] DANA: Those are the two big ones.
+
+[00:22:04] DANA: Okay. Let me pull this together.
+[00:22:10] DANA: The mechanism, one sentence: the first number bends every number after it, because we adjust from a starting point instead of reasoning from scratch, and we never adjust enough.
+[00:22:26] DANA: The levers: justify the number, make the number precise, give a range and then be quiet.
+[00:22:36] DANA: Three moves. And the appraiser study tells you why they matter — even professionals who swear they weren't influenced were moved by a third.
+[00:22:50] DANA: And Marcus tells you that this is happening constantly, in conversations that don't look like negotiations at all.
+
+[00:23:06] DANA: For next time — I'm changing the homework.
+[00:23:12] DANA: I don't want you to read anything. I want you to bring a number.
+[00:23:18] DANA: Pick a real negotiation you have coming up, any size, and come to Lesson 4 with a precise anchor and the because-clause that goes with it. Written down.
+[00:23:32] DANA: We'll pressure-test them live. Bring your number.
+[00:23:39] DANA: Good? Good. That's the lesson.

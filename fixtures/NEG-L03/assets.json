@@ -1,0 +1,114 @@
+{
+  "lesson_id": "NEG-L03",
+  "generated_from_plan_version": "v4 (locked 2026-08-19)",
+  "assets": [
+    {
+      "id": "GFX-01", "type": "lower_third", "owner": "Design",
+      "title": "Instructor lower third",
+      "depends_on": ["B01"],
+      "on_screen_text": ["Dana Okafor", "Negotiation Essentials"]
+    },
+    {
+      "id": "GFX-02", "type": "stat_card", "owner": "Design",
+      "title": "Appraiser study stat card",
+      "depends_on": ["B04"],
+      "on_screen_text": ["41%", "shift in expert appraisals", "Northcraft & Neale"]
+    },
+    {
+      "id": "GFX-03", "type": "list_build", "owner": "Design",
+      "title": "Three learning outcomes",
+      "depends_on": ["B02"],
+      "on_screen_text": ["Explain why anchoring works", "Four levers for setting an anchor", "Respond when anchored first"]
+    },
+    {
+      "id": "GFX-04", "type": "list_build", "owner": "Design",
+      "title": "The Four Anchoring Levers",
+      "depends_on": ["B06", "B07", "B08", "B09"],
+      "on_screen_text": ["The Four Anchoring Levers", "1. Precision", "2. Range", "3. Justification", "4. Patience"]
+    },
+    {
+      "id": "GFX-05", "type": "caption", "owner": "Design",
+      "title": "Role-play scenario caption",
+      "depends_on": ["B10"],
+      "on_screen_text": ["Role-play: the salary conversation"]
+    },
+    {
+      "id": "GFX-06", "type": "list_build", "owner": "Design",
+      "title": "Three common mistakes",
+      "depends_on": ["B11"],
+      "on_screen_text": ["Anchoring without information", "Anchoring inside your range", "Re-anchoring against yourself"]
+    },
+    {
+      "id": "GFX-07", "type": "full_frame", "owner": "Design",
+      "title": "When NOT to anchor first",
+      "depends_on": ["B12"],
+      "on_screen_text": ["When NOT to anchor first", "Worse information than the other side"]
+    },
+    {
+      "id": "HND-1", "type": "handout_section", "owner": "Curriculum",
+      "title": "Handout §1 — What anchoring is",
+      "depends_on": ["B03", "B04", "B05"],
+      "on_screen_text": []
+    },
+    {
+      "id": "HND-2", "type": "handout_section", "owner": "Curriculum",
+      "title": "Handout §2 — The four levers (worksheet)",
+      "depends_on": ["B06", "B07", "B08", "B09"],
+      "on_screen_text": ["Lever 4: Patience — practise a four-second silence"]
+    },
+    {
+      "id": "HND-3", "type": "handout_section", "owner": "Curriculum",
+      "title": "Handout §3 — Common mistakes checklist",
+      "depends_on": ["B11"],
+      "on_screen_text": []
+    },
+    {
+      "id": "HND-4", "type": "handout_section", "owner": "Curriculum",
+      "title": "Handout §4 — When to let them go first",
+      "depends_on": ["B12"],
+      "on_screen_text": []
+    },
+    {
+      "id": "HND-5", "type": "handout_section", "owner": "Curriculum",
+      "title": "Handout §5 — Homework: procurement case study",
+      "depends_on": ["B14"],
+      "on_screen_text": ["Read the procurement anchoring case study before Lesson 4"]
+    },
+    {
+      "id": "QUIZ-01", "type": "quiz_item", "owner": "Curriculum",
+      "title": "Quiz: why does anchoring work?",
+      "depends_on": ["B03"],
+      "on_screen_text": []
+    },
+    {
+      "id": "QUIZ-02", "type": "quiz_item", "owner": "Curriculum",
+      "title": "Quiz: which lever is the because-clause?",
+      "depends_on": ["B08"],
+      "on_screen_text": []
+    },
+    {
+      "id": "QUIZ-03", "type": "quiz_item", "owner": "Curriculum",
+      "title": "Quiz: name the fourth lever (Patience)",
+      "depends_on": ["B09"],
+      "on_screen_text": ["What is the fourth anchoring lever?", "Answer: Patience"]
+    },
+    {
+      "id": "QUIZ-04", "type": "quiz_item", "owner": "Curriculum",
+      "title": "Quiz: when should you not anchor first?",
+      "depends_on": ["B12"],
+      "on_screen_text": []
+    },
+    {
+      "id": "CHAP-01", "type": "chapter_marker", "owner": "Edit", "title": "Chapter: Cold open", "depends_on": ["B01"], "on_screen_text": [] },
+    {
+      "id": "CHAP-02", "type": "chapter_marker", "owner": "Edit", "title": "Chapter: What you'll learn", "depends_on": ["B02"], "on_screen_text": [] },
+    {
+      "id": "CHAP-03", "type": "chapter_marker", "owner": "Edit", "title": "Chapter: The mechanism", "depends_on": ["B03", "B04", "B05"], "on_screen_text": [] },
+    {
+      "id": "CHAP-04", "type": "chapter_marker", "owner": "Edit", "title": "Chapter: The four levers", "depends_on": ["B06", "B07", "B08", "B09"], "on_screen_text": [] },
+    {
+      "id": "CHAP-05", "type": "chapter_marker", "owner": "Edit", "title": "Chapter: Practice", "depends_on": ["B10", "B11"], "on_screen_text": [] },
+    {
+      "id": "CHAP-06", "type": "chapter_marker", "owner": "Edit", "title": "Chapter: Close", "depends_on": ["B13", "B14"], "on_screen_text": [] }
+  ]
+}
