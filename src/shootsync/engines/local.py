@@ -29,6 +29,7 @@ class LocalReconciler:
         block_sigma: float = 0.25,
         min_block: int = 3,
         absorb_ratio: float = 0.5,
+        boundary_slack: int = 5,
         order_prior: float = 0.55,
         min_added_segments: int = 5,
         support_terms: int = 5,
@@ -43,6 +44,7 @@ class LocalReconciler:
         self.block_sigma = block_sigma
         self.min_block = min_block
         self.absorb_ratio = absorb_ratio
+        self.boundary_slack = boundary_slack
         self.order_prior = order_prior
         self.min_added_segments = min_added_segments
         self.support_terms = support_terms
@@ -217,6 +219,30 @@ class LocalReconciler:
                     beat_of_block.pop(k, None)
                 block_of_beat.pop(bi)
 
+        # Topic blocks are cut by a sliding window, so a boundary lands within a
+        # segment or two of the real one — close enough to assign a beat, not close
+        # enough to hand an editor. Slide each shared boundary to the segment that
+        # best separates the two beats either side of it.
+        spans = {
+            bi: [blocks[k][0] for k in sorted(ks)][:1] + [blocks[sorted(ks)[-1]][1]]
+            for bi, ks in block_of_beat.items()
+        }
+        ordered = sorted(spans.items(), key=lambda kv: kv[1][0])
+        for (left, lspan), (right, rspan) in zip(ordered, ordered[1:]):
+            if lspan[1] + 1 != rspan[0]:
+                continue  # not adjacent on the tape; nothing to slide
+            cut = rspan[0]
+            lo, hi = max(lspan[0] + 1, cut - self.boundary_slack), min(rspan[1], cut + self.boundary_slack)
+            best_cut, best_score = cut, None
+            for candidate in range(lo, hi + 1):
+                score = (
+                    sum(scores[i][left] for i in range(lspan[0], candidate))
+                    + sum(scores[i][right] for i in range(candidate, rspan[1] + 1))
+                )
+                if best_score is None or score > best_score:
+                    best_cut, best_score = candidate, score
+            lspan[1], rspan[0] = best_cut - 1, best_cut
+
         results: list[ReconciledBeat] = []
         for bi, beat in enumerate(lesson.beats):
             ks = sorted(block_of_beat.get(bi, []))
@@ -230,7 +256,7 @@ class LocalReconciler:
                     )
                 )
                 continue
-            lo, hi = blocks[ks[0]][0], blocks[ks[-1]][1]
+            lo, hi = spans[bi]
             mean_sim = sum(block_sim[k][bi] for k in ks) / len(ks)
             window = " ".join(segments[i].text for i in range(lo, hi + 1))
             results.append(
@@ -249,14 +275,11 @@ class LocalReconciler:
         for pos, r in enumerate(placed):
             r.actual_order = pos
 
-        spans = {
-            bi: (blocks[sorted(ks)[0]][0], blocks[sorted(ks)[-1]][1])
-            for bi, ks in block_of_beat.items()
-        }
-        self._mark_merged(lesson, results, scores, spans)
+        final_spans = {bi: (v[0], v[1]) for bi, v in spans.items()}
+        self._mark_merged(lesson, results, scores, final_spans)
         self._mark_moved(results)
         self._mark_modified(lesson, results, segments)
-        added = self._find_added(segments, scores, list(spans.values()))
+        added = self._find_added(segments, scores, list(final_spans.values()))
 
         return AsTaughtRecord(
             lesson_id=lesson.lesson_id,

@@ -53,12 +53,15 @@ def test_label_assets_are_not_checked_against_the_audio(by_asset):
     assert by_asset["GFX-01"].conflicts == []
 
 
-def test_moved_content_is_retimed_not_rewritten(by_asset):
+def test_moved_content_is_retimed_not_rewritten(by_asset, atr):
     # B08 moved but its substance is intact, so the quiz on it only needs a new
     # timecode — not a curriculum rewrite.
     quiz = by_asset["QUIZ-02"]
     assert quiz.action == RETIME
-    assert quiz.start == 444.0
+    assert quiz.conflicts == []
+    # It must point at where B08 actually is on the tape, not where the plan put it.
+    assert quiz.start == atr.get("B08").start
+    assert 440 <= quiz.start <= 470
 
 
 def test_unchanged_assets_still_receive_a_timecode(by_asset):
