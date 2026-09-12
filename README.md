@@ -1,3 +1,6 @@
+> This repository also contains **[Airlock](airlock/)** — a pre-execution gate that
+> inspects downloaded files before they are opened. Separate, self-contained project.
+
 # ShootSync
 
 Reconciles a master lesson plan with what the instructor actually taught on shoot

@@ -3,3 +3,5 @@ __pycache__/
 out/
 .venv/
 shot-*.png
+airlock-selftest-*/
+.pytest_cache/

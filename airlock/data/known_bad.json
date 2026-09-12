@@ -1,0 +1,12 @@
+{
+  "_comment": "SHA-256 -> known-bad metadata. Shipped empty of real malware hashes; see docs/DESIGN.md on why Airlock is not signature-led.",
+  "entries": {
+    "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f": {
+      "name": "EICAR-Test-File",
+      "family": "test",
+      "severity": "critical",
+      "source": "EICAR standard anti-malware test file",
+      "harmless": true
+    }
+  }
+}

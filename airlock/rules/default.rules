@@ -1,0 +1,215 @@
+// Airlock default ruleset.
+//
+// Rules here are for things that are *specific* -- a named test file, a known
+// technique with an unmistakable byte pattern, a combination that has no benign
+// explanation. Broad behavioural judgement lives in the format analysers, which
+// can weigh context; a signature cannot.
+//
+// After editing this file, re-pin it:  airlock rules pin
+
+rule EICAR_Test_File : test {
+    meta:
+        severity = "critical"
+        decisive = "MALICIOUS"
+        category = "signature"
+        description = "EICAR anti-malware test file"
+        detail = "The standard industry test string. It is harmless, and detecting it proves the scanning path works end to end. If this appears on a real download, someone is testing your defences."
+    strings:
+        $eicar = "EICAR-STANDARD-ANTIVIRUS-TEST-FILE!"
+    condition:
+        $eicar
+}
+
+rule Powershell_Download_Cradle : powershell downloader {
+    meta:
+        severity = "high"
+        category = "script"
+        attck = "T1059.001"
+        description = "PowerShell download-and-execute cradle"
+        detail = "The canonical fileless-execution pattern: fetch a script over HTTP and hand it straight to the interpreter, so nothing is written to disk for a scanner to find."
+    strings:
+        $net1 = "Net.WebClient" nocase
+        $net2 = "DownloadString" nocase
+        $net3 = "DownloadFile" nocase
+        $net4 = "Invoke-WebRequest" nocase
+        $exec1 = "IEX" nocase
+        $exec2 = "Invoke-Expression" nocase
+        $exec3 = "iwr" nocase
+    condition:
+        1 of ($net1, $net2, $net3, $net4) and 1 of ($exec1, $exec2, $exec3)
+}
+
+rule Shellcode_Loader_Triad : injection {
+    meta:
+        severity = "critical"
+        category = "capability"
+        attck = "T1055.002"
+        description = "Complete process-hollowing API sequence"
+        detail = "Allocate remote memory, write to it, start a thread on it. All three names in one image describe process injection and nothing else."
+    strings:
+        $alloc = "VirtualAllocEx"
+        $write = "WriteProcessMemory"
+        $thread = "CreateRemoteThread"
+        $unmap = "NtUnmapViewOfSection"
+        $ctx = "SetThreadContext"
+    condition:
+        3 of them
+}
+
+rule Defender_Tampering : evasion {
+    meta:
+        severity = "critical"
+        category = "capability"
+        attck = "T1562.001"
+        description = "Disables Microsoft Defender protection"
+        detail = "Turning off real-time monitoring or adding a path exclusion is a precondition to running something that would otherwise be caught. It is never incidental."
+    strings:
+        $a = "DisableRealtimeMonitoring" nocase
+        $b = "Set-MpPreference" nocase
+        $c = "Add-MpPreference" nocase
+        $d = "ExclusionPath" nocase
+        $e = "DisableAntiSpyware" nocase
+    condition:
+        2 of them
+}
+
+rule Ransomware_Recovery_Destruction : ransomware {
+    meta:
+        severity = "critical"
+        decisive = "QUARANTINE"
+        category = "capability"
+        attck = "T1490"
+        description = "Destroys backups and recovery configuration"
+        detail = "Shadow-copy deletion plus recovery tampering is the step that turns file encryption from reversible into a payment demand."
+    strings:
+        $vss1 = "vssadmin" nocase
+        $vss2 = "delete shadows" nocase
+        $wmi = "shadowcopy delete" nocase
+        $bcd = "recoveryenabled no" nocase
+        $wb = "delete catalog" nocase
+    condition:
+        2 of them
+}
+
+rule Credential_Store_Access : credentials {
+    meta:
+        severity = "high"
+        category = "capability"
+        attck = "T1555.003"
+        description = "Reads browser or OS credential stores"
+        detail = "Direct paths to saved-password databases. Infostealers are the most common commodity payload, and this is what they open."
+    strings:
+        $chrome = "Login Data" nocase
+        $chromedir = "User Data\\Default" nocase
+        $firefox = "logins.json" nocase
+        $ff2 = "key4.db" nocase
+        $dpapi = "CryptUnprotectData"
+        $vault = "Windows Vault" nocase
+        $keychain = "login.keychain" nocase
+    condition:
+        2 of them
+}
+
+rule Remote_Template_Injection : document {
+    meta:
+        severity = "critical"
+        category = "document"
+        attck = "T1221"
+        description = "Office relationship pointing at a remote template"
+        detail = "The document carries no payload -- it fetches one on open. This is what gets past macro detection."
+    strings:
+        $rel = "attachedTemplate"
+        $ext = "TargetMode=\"External\""
+        $http = "Target=\"http"
+        $unc = "Target=\"\\\\"
+    condition:
+        $rel and $ext and 1 of ($http, $unc)
+}
+
+rule Windows_Reverse_Shell_Strings : c2 {
+    meta:
+        severity = "critical"
+        category = "capability"
+        attck = "T1059.003"
+        description = "Interactive shell wired to a socket"
+    strings:
+        $sh1 = "cmd.exe /c" nocase
+        $sh2 = "cmd.exe /k" nocase
+        $sock1 = "WSASocket"
+        $sock2 = "TcpClient"
+        $pipe = "STARTUPINFO"
+        $hide = "SW_HIDE"
+    condition:
+        1 of ($sh1, $sh2) and 1 of ($sock1, $sock2) and 1 of ($pipe, $hide)
+}
+
+rule UAC_Bypass_Known_Keys : privesc {
+    meta:
+        severity = "high"
+        category = "capability"
+        attck = "T1548.002"
+        description = "Registry hijack used to bypass User Account Control"
+        detail = "These specific keys are read by auto-elevating Microsoft binaries. Writing them is a documented UAC bypass and has no other use."
+    strings:
+        $a = "ms-settings\\shell\\open\\command" nocase
+        $b = "Classes\\mscfile\\shell\\open\\command" nocase
+        $c = "Classes\\exefile\\shell\\open\\command" nocase
+        $d = "fodhelper" nocase
+        $e = "eventvwr" nocase
+        $f = "computerdefaults" nocase
+    condition:
+        2 of them
+}
+
+rule Embedded_PE_In_Document : dropper {
+    meta:
+        severity = "high"
+        category = "structure"
+        attck = "T1027.009"
+        excludes = "pe, dos-mz, elf, macho, macho-fat, java-class, dex"
+        description = "Executable header embedded inside a non-executable file"
+        detail = "An MZ/PE header carried inside a document or archive body is a dropped payload waiting to be written out."
+    strings:
+        $mz = { 4D 5A }
+        $pe = { 50 45 00 00 }
+        $dos = "This program cannot be run in DOS mode"
+    condition:
+        $mz and $pe and $dos
+}
+
+rule Anti_Sandbox_Artifact_Checks : evasion {
+    meta:
+        severity = "high"
+        category = "capability"
+        attck = "T1497.001"
+        description = "Checks for analysis-environment artefacts"
+        detail = "Looking for VM drivers, sandbox DLLs or analyst tooling in order to behave differently when watched. Benign software does not care whether it is in a VM."
+    strings:
+        $vm1 = "VBoxService" nocase
+        $vm2 = "vmtoolsd" nocase
+        $vm3 = "VBoxTray" nocase
+        $sb1 = "SbieDll.dll" nocase
+        $sb2 = "cuckoomon" nocase
+        $an1 = "wireshark" nocase
+        $an2 = "procmon" nocase
+        $an3 = "ollydbg" nocase
+        $an4 = "x64dbg" nocase
+    condition:
+        3 of them
+}
+
+rule Clipboard_Crypto_Hijack : stealer {
+    meta:
+        severity = "critical"
+        category = "capability"
+        attck = "T1115"
+        description = "Monitors the clipboard for cryptocurrency addresses"
+        detail = "Clipboard access combined with wallet-address patterns is a clipper: it swaps the address you copied for the attacker's at the moment you paste."
+    strings:
+        $clip1 = "OpenClipboard"
+        $clip2 = "SetClipboardData"
+        $btc = /\b(bc1|[13])[a-km-zA-HJ-NP-Z1-9]{25,39}\b/
+        $eth = /\b0x[a-fA-F0-9]{40}\b/
+    condition:
+        2 of ($clip1, $clip2) and 1 of ($btc, $eth)
+}

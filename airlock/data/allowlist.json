@@ -1,0 +1,4 @@
+{
+  "_comment": "SHA-256 -> trusted-file metadata. Populate with digests your organisation has reviewed. Empty by default: an allowlist you did not curate is an allowlist you cannot trust.",
+  "entries": {}
+}
