@@ -175,7 +175,7 @@ def _binary_content_checks(sf: SafeFile, prefix: str) -> list[Finding]:
                    "for a binary means its contents are packed or encrypted.",
             evidence=[f"{ent:.2f} bits/byte over {len(data)} bytes"], attck="T1027.002"))
 
-    destructive = find_destructive_commands(data)
+    destructive = find_destructive_commands(data, context="binary")
     if destructive:
         out.append(Finding(
             id=f"{prefix}_DESTRUCTIVE_COMMANDS",

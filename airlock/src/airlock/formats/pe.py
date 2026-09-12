@@ -784,7 +784,7 @@ def _check_content_indicators(pe: PEFile, sf: SafeFile) -> list[Finding]:
     out: list[Finding] = []
     data = sf.read_at(0, min(sf.readable_size, config.MAX_REGEX_WINDOW))
 
-    destructive = find_destructive_commands(data)
+    destructive = find_destructive_commands(data, context="binary")
     if destructive:
         ransom = [d for d in destructive if d[2] in ("T1490", "T1485")]
         out.append(Finding(

@@ -191,13 +191,25 @@ def test_json_report_is_valid_and_complete(scanner, corpus):
 
 
 def test_html_report_is_self_contained(scanner, corpus):
-    reports = [scanner.scan_path(corpus[n], n) for n in list(corpus)[:5]]
+    """The report must make no network requests when opened.
+
+    Checking for the substring "http://" is the wrong test -- reports legitimately
+    *display* extracted URLs as evidence text. What matters is that no construct
+    in the page can cause a fetch.
+    """
+    import re
+    reports = [scanner.scan_path(corpus[n], n) for n in corpus]  # whole corpus
     html = render_html(reports)
     assert "<!doctype html>" in html
-    # No external requests: a page about hostile files should not make any.
-    for marker in ("http://", "https://", "<script"):
-        assert marker not in html.replace("https://www.virustotal.com", "")
     assert "prefers-color-scheme" in html
+
+    assert "<script" not in html
+    assert "<iframe" not in html
+    for pattern in (r'src\s*=', r'href\s*=', r'@import', r'url\s*\('):
+        assert not re.search(pattern, html), f"report can fetch a resource: {pattern}"
+
+    # ... and the evidence URLs really are present, as escaped text.
+    assert "example.invalid" in html
 
 
 def test_html_escapes_hostile_filenames(scanner, write_sample):

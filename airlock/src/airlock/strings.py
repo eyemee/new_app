@@ -30,31 +30,42 @@ PERSISTENCE_KEYS = (
     b"currentversion\\app paths", b"\\services\\", b"appinit_dlls",
 )
 
-#: Commands whose presence in a binary is evidence of intent, not of capability.
+#: Commands whose presence is evidence of intent rather than of capability.
+#:
+#: The third field is the *context* the indicator is meaningful in, and it is
+#: the difference between a useful finding and noise. ``/dev/tcp/`` inside a
+#: shell script is a reverse shell; inside a compiled binary it is almost
+#: certainly bash, which is the program that implements the feature. The same
+#: goes for ``crontab -`` and git. Matching a fragment without asking where it
+#: was found flags the operating system's own tooling.
+SCRIPT, BINARY, ANYWHERE = ("script",), ("binary",), ("script", "binary")
+
 DESTRUCTIVE_COMMANDS = (
-    (b"vssadmin delete shadows", "deletes Volume Shadow Copies", "T1490"),
-    (b"wmic shadowcopy delete", "deletes Volume Shadow Copies via WMI", "T1490"),
-    (b"bcdedit /set", "alters boot configuration (recovery tampering)", "T1490"),
-    (b"recoveryenabled no", "disables Windows recovery", "T1490"),
-    (b"wbadmin delete catalog", "deletes the backup catalogue", "T1490"),
-    (b"cipher /w", "wipes free space", "T1485"),
-    (b"schtasks /create", "creates a scheduled task", "T1053.005"),
-    (b"reg add", "writes to the registry from the shell", "T1112"),
-    (b"netsh advfirewall", "reconfigures the Windows firewall", "T1562.004"),
-    (b"set-mppreference", "alters Microsoft Defender settings", "T1562.001"),
-    (b"add-mppreference -exclusionpath", "adds a Defender exclusion", "T1562.001"),
-    (b"defender", "references Microsoft Defender", ""),
-    (b"wevtutil cl", "clears an event log", "T1070.001"),
-    (b"clear-eventlog", "clears an event log", "T1070.001"),
-    (b"taskkill /f /im", "force-kills a named process", "T1562"),
-    (b"icacls", "rewrites file ACLs", "T1222.001"),
-    (b"attrib +h +s", "hides a file as a system file", "T1564.001"),
-    (b"/dev/tcp/", "opens a raw TCP socket from the shell (reverse shell)", "T1059.004"),
-    (b"chattr +i", "makes a file immutable", "T1222.002"),
-    (b"history -c", "clears shell history", "T1070.003"),
-    (b"crontab -", "installs a cron job from stdin", "T1053.003"),
-    (b"launchctl load", "loads a macOS launch agent", "T1543.001"),
-    (b"csrutil disable", "disables macOS System Integrity Protection", "T1562.001"),
+    (b"vssadmin delete shadows", "deletes Volume Shadow Copies", "T1490", ANYWHERE),
+    (b"wmic shadowcopy delete", "deletes Volume Shadow Copies via WMI", "T1490", ANYWHERE),
+    (b"bcdedit /set", "alters boot configuration (recovery tampering)", "T1490", ANYWHERE),
+    (b"recoveryenabled no", "disables Windows recovery", "T1490", ANYWHERE),
+    (b"wbadmin delete catalog", "deletes the backup catalogue", "T1490", ANYWHERE),
+    (b"cipher /w", "wipes free space", "T1485", ANYWHERE),
+    (b"schtasks /create", "creates a scheduled task", "T1053.005", ANYWHERE),
+    (b"netsh advfirewall", "reconfigures the Windows firewall", "T1562.004", ANYWHERE),
+    (b"set-mppreference", "alters Microsoft Defender settings", "T1562.001", ANYWHERE),
+    (b"add-mppreference -exclusionpath", "adds a Defender exclusion", "T1562.001", ANYWHERE),
+    (b"wevtutil cl", "clears an event log", "T1070.001", ANYWHERE),
+    (b"clear-eventlog", "clears an event log", "T1070.001", ANYWHERE),
+    (b"taskkill /f /im", "force-kills a named process", "T1562", ANYWHERE),
+    (b"attrib +h +s", "hides a file as a system file", "T1564.001", ANYWHERE),
+    (b"csrutil disable", "disables macOS System Integrity Protection", "T1562.001", ANYWHERE),
+    # Script idioms. In a compiled binary these are the interpreter or the
+    # tooling that implements them -- bash ships "/dev/tcp/", git ships
+    # "crontab -" -- so matching them there flags the system's own software.
+    (b"/dev/tcp/", "opens a raw TCP socket from the shell (reverse shell)", "T1059.004", SCRIPT),
+    (b"history -c", "clears shell history", "T1070.003", SCRIPT),
+    (b"crontab -", "installs a cron job from stdin", "T1053.003", SCRIPT),
+    (b"chattr +i", "makes a file immutable", "T1222.002", SCRIPT),
+    (b"launchctl load", "loads a macOS launch agent", "T1543.001", SCRIPT),
+    (b"reg add", "writes to the registry from the shell", "T1112", SCRIPT),
+    (b"icacls", "rewrites file ACLs", "T1222.001", SCRIPT),
 )
 
 #: Living-off-the-land binaries: signed, trusted, and abusable for execution.
@@ -141,11 +152,14 @@ def find_persistence_keys(data: bytes) -> list[str]:
     return hits
 
 
-def find_destructive_commands(data: bytes) -> list[tuple[str, str, str]]:
+def find_destructive_commands(data: bytes, context: str = "script") -> list[tuple[str, str, str]]:
+    """Destructive commands meaningful in ``context`` ("script" or "binary")."""
     lowered = data[:config.MAX_REGEX_WINDOW].lower()
     wide = b"\n".join(utf16_strings(data[:config.MAX_REGEX_WINDOW])).lower()
     out = []
-    for needle, description, attck in DESTRUCTIVE_COMMANDS:
+    for needle, description, attck, contexts in DESTRUCTIVE_COMMANDS:
+        if context not in contexts:
+            continue
         if needle in lowered or needle in wide:
             out.append((needle.decode(), description, attck))
     return out

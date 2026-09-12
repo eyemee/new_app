@@ -349,3 +349,40 @@ def test_real_system_binary_is_clean(write_sample):
     path = write_sample("ls", open(source, "rb").read())
     findings = analyse(path, elf.analyse_elf, "ls")
     assert not [f for f in findings if f.severity >= Severity.HIGH]
+
+
+# ==========================================================================
+# False positives on real software
+# ==========================================================================
+@pytest.mark.parametrize("binary", ["bash", "git", "ls", "tar", "python3", "grep"])
+def test_real_system_binaries_are_not_flagged(binary, write_sample):
+    """Regression: bash embeds "/dev/tcp/" because bash is the program that
+    *implements* /dev/tcp, and git embeds "crontab -" from its scheduler.
+    Matching those fragments without asking what kind of file they were found
+    in flagged the operating system's own tooling as a reverse shell.
+    """
+    import shutil
+    source = shutil.which(binary)
+    if source is None:
+        pytest.skip(f"{binary} not installed")
+    path = write_sample(binary, open(source, "rb").read())
+    findings = analyse(path, elf.analyse_elf, binary)
+    offenders = [f for f in findings if f.severity >= Severity.MEDIUM]
+    assert not offenders, f"{binary} flagged by {[f.id for f in offenders]}"
+
+
+def test_script_idioms_still_fire_in_scripts(write_sample):
+    """The other half of the same fix: the context filter must not blunt
+    detection where these idioms genuinely mean something."""
+    path = write_sample("x.sh", samples.reverse_shell_script())
+    found = ids(analyse(path, script.analyse, "shell", "x.sh"))
+    assert "SH_REVERSE_SHELL" in found
+    assert "SCRIPT_DESTRUCTIVE_COMMANDS" in found
+
+
+def test_ransomware_commands_still_fire_in_binaries(write_sample):
+    path = write_sample("r.exe", samples.ransomware_like_pe())
+    finding = next(f for f in analyse(path, pe_mod.analyse)
+                   if f.id == "PE_DESTRUCTIVE_COMMANDS")
+    assert finding.severity is Severity.CRITICAL
+    assert any("vssadmin" in e for e in finding.evidence)
