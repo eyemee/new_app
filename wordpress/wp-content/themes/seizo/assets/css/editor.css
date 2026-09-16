@@ -1,0 +1,42 @@
+/* ============================================================
+   ブロックエディタ用。
+   クライアントがお知らせ本文を書くとき、管理画面での見え方を
+   フロントに寄せておくためのもの。
+   ============================================================ */
+
+.editor-styles-wrapper {
+	font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
+	             "Hiragino Sans", "BIZ UDPGothic", Meiryo, sans-serif;
+	font-size: 16px;
+	line-height: 2;
+	letter-spacing: 0.04em;
+	color: #1a1a1a;
+}
+
+.editor-styles-wrapper .wp-block {
+	max-width: 800px;
+}
+
+.editor-styles-wrapper h2 {
+	padding-bottom: 8px;
+	border-bottom: 2px solid #0b3d78;
+	font-size: 22px;
+	font-weight: 700;
+}
+
+.editor-styles-wrapper h3 {
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.editor-styles-wrapper a {
+	color: #0b3d78;
+	text-decoration: underline;
+}
+
+.editor-styles-wrapper blockquote {
+	padding: 16px 24px;
+	background: #f5f7f9;
+	border-left: 3px solid #b8c0c8;
+	color: #5c6670;
+}

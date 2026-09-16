@@ -1,0 +1,114 @@
+/* ============================================================
+   デザイントークン
+   ------------------------------------------------------------
+   ★入稿 AI から拾う値はすべてこのファイルに集約している。
+   各ページの CSS はここの変数しか参照しないので、色・級数・余白の
+   最終調整はこのファイルだけで完結する。
+
+   AI から拾う順番（docs/DESIGN-HANDOFF.md に対応表あり）:
+     1. スウォッチ  → --c-*
+     2. 文字設定    → --fs-* / --lh-* / --ls-*
+     3. アートボード幅・マージン → --w-* / --space-*
+   ============================================================ */
+
+:root {
+	/* --- 色 ---------------------------------------------- */
+	--c-primary:        #0b3d78; /* 企業カラー（紺） */
+	--c-primary-dark:   #082c57;
+	--c-primary-light:  #e8eff7;
+	--c-accent:         #c8102e; /* アクセント（赤） */
+
+	--c-text:           #1a1a1a;
+	--c-text-weak:      #5c6670;
+	--c-text-inverse:   #ffffff;
+
+	--c-bg:             #ffffff;
+	--c-bg-subtle:      #f5f7f9;
+	--c-bg-dark:        #0b1f36;
+
+	--c-border:         #dfe3e8;
+	--c-border-strong:  #b8c0c8;
+
+	--c-error:          #c8102e;
+	--c-error-bg:       #fdf2f4;
+
+	/* --- 書体 -------------------------------------------- */
+	/* 和文はゴシック。Windows / macOS / iOS / Android すべてで
+	   本文が破綻しない順に並べている。 */
+	--ff-base: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
+	           "Hiragino Sans", "BIZ UDPGothic", Meiryo, sans-serif;
+	--ff-en:   "Helvetica Neue", Arial, sans-serif;
+
+	/* 級数。AI 上の pt をそのまま px として拾い、ここに入れる。 */
+	--fs-xs:   1.2rem;  /* 12px  注記 */
+	--fs-sm:   1.3rem;  /* 13px  補足 */
+	--fs-base: 1.5rem;  /* 15px  本文 */
+	--fs-md:   1.6rem;  /* 16px  本文（大） */
+	--fs-lg:   1.8rem;  /* 18px  リード */
+	--fs-xl:   2.2rem;  /* 22px  小見出し */
+	--fs-2xl:  2.8rem;  /* 28px  セクション見出し */
+	--fs-3xl:  3.6rem;  /* 36px  ページ見出し */
+	--fs-4xl:  4.8rem;  /* 48px  キービジュアル */
+
+	--lh-tight: 1.4;
+	--lh-base:  1.9;   /* 和文本文は広め。AI の行送りに合わせて調整する */
+	--lh-heading: 1.5;
+
+	--ls-base: 0.04em;
+	--ls-wide: 0.12em; /* 英字見出し・ラベル用 */
+
+	--fw-normal: 400;
+	--fw-medium: 500;
+	--fw-bold:   700;
+
+	/* --- 余白 -------------------------------------------- */
+	--space-1:  0.4rem;
+	--space-2:  0.8rem;
+	--space-3:  1.2rem;
+	--space-4:  1.6rem;
+	--space-5:  2.4rem;
+	--space-6:  3.2rem;
+	--space-7:  4.0rem;
+	--space-8:  5.6rem;
+	--space-9:  8.0rem;
+	--space-10: 12.0rem;
+
+	/* セクションの上下余白 */
+	--section-py:    var(--space-9);
+	--section-py-sp: var(--space-7);
+
+	/* --- レイアウト -------------------------------------- */
+	--w-container: 1120px; /* AI のアートボード内コンテンツ幅に合わせる */
+	--w-narrow:    800px;
+	--w-wide:      1440px;
+	--gutter:      2.4rem;
+	--gutter-sp:   2.0rem;
+
+	--header-h:    88px;
+	--header-h-sp: 64px;
+
+	/* --- その他 ------------------------------------------ */
+	--radius:    2px; /* 製造業サイトは角丸を抑えめに。AI に合わせて調整 */
+	--radius-lg: 4px;
+
+	--shadow-card: 0 2px 12px rgba(11, 31, 54, 0.08);
+	--shadow-nav:  0 2px 16px rgba(11, 31, 54, 0.12);
+
+	--ease:     cubic-bezier(0.4, 0, 0.2, 1);
+	--duration: 0.25s;
+
+	--z-header:  100;
+	--z-nav:     90;
+	--z-pagetop: 80;
+}
+
+/* スマートフォン。ブレークポイントは AI の SP アートボード幅に合わせる。 */
+@media (max-width: 767px) {
+	:root {
+		--fs-3xl: 2.6rem;
+		--fs-4xl: 3.2rem;
+		--fs-2xl: 2.2rem;
+		--section-py: var(--section-py-sp);
+		--gutter: var(--gutter-sp);
+	}
+}

@@ -3,3 +3,8 @@ __pycache__/
 out/
 .venv/
 shot-*.png
+
+# WordPress ローカル環境（Docker のボリュームに閉じ込めているので本来出ないが念のため）
+wordpress/wp-content/uploads/
+wordpress/wp-content/upgrade/
+wordpress/*.log

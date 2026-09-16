@@ -1,0 +1,172 @@
+/* ============================================================
+   リセットと基本タイポグラフィ
+   ------------------------------------------------------------
+   html に 62.5% を敷いて 1rem = 10px にしている。AI 上の pt 値を
+   そのまま 1/10 して rem で書けるので、突き合わせの計算が減る。
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+	scroll-behavior: smooth;
+	-webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+
+body {
+	margin: 0;
+	background: var(--c-bg);
+	color: var(--c-text);
+	font-family: var(--ff-base);
+	font-size: var(--fs-base);
+	line-height: var(--lh-base);
+	letter-spacing: var(--ls-base);
+	font-feature-settings: "palt" 1; /* 和文の約物詰め。AI の見た目に寄せる */
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	font-weight: var(--fw-bold);
+	line-height: var(--lh-heading);
+}
+
+p, ul, ol, dl, dd, figure, blockquote {
+	margin: 0;
+}
+
+ul, ol {
+	padding: 0;
+	list-style: none;
+}
+
+img, svg, video {
+	max-width: 100%;
+	height: auto;
+	vertical-align: middle;
+}
+
+img {
+	border-style: none;
+}
+
+a {
+	color: var(--c-primary);
+	text-decoration: none;
+	transition: color var(--duration) var(--ease), opacity var(--duration) var(--ease);
+}
+
+a:hover {
+	color: var(--c-primary-dark);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+	outline: 2px solid var(--c-primary);
+	outline-offset: 2px;
+}
+
+button {
+	font: inherit;
+	color: inherit;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+input, select, textarea {
+	font: inherit;
+	color: inherit;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+address {
+	font-style: normal;
+}
+
+/* --- レイアウトの器 ------------------------------------- */
+
+.l-container {
+	width: 100%;
+	max-width: calc(var(--w-container) + var(--gutter) * 2);
+	margin-inline: auto;
+	padding-inline: var(--gutter);
+}
+
+.l-container--narrow {
+	max-width: calc(var(--w-narrow) + var(--gutter) * 2);
+}
+
+.l-container--wide {
+	max-width: calc(var(--w-wide) + var(--gutter) * 2);
+}
+
+.l-main {
+	display: block;
+	min-height: 50vh;
+}
+
+/* --- ユーティリティ ------------------------------------- */
+
+.u-visually-hidden {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* スキップリンクはフォーカス時だけ見える */
+.c-skip-link:focus {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	width: auto;
+	height: auto;
+	margin: 0;
+	padding: var(--space-3) var(--space-4);
+	overflow: visible;
+	clip: auto;
+	clip-path: none;
+	background: var(--c-primary);
+	color: var(--c-text-inverse);
+}
+
+@media (max-width: 767px) {
+	.u-pc-only { display: none !important; }
+}
+
+@media (min-width: 768px) {
+	.u-sp-only { display: none !important; }
+}

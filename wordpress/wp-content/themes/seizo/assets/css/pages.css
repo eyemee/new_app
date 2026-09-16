@@ -1,0 +1,649 @@
+/* ============================================================
+   ページ固有のレイアウト
+   ------------------------------------------------------------
+   body クラス（p-home / p-company / p-contact …）で区切っている。
+   共通パーツの見た目を変えたい場合は components.css を先に見ること。
+   ============================================================ */
+
+/* --- トップ: キービジュアル ----------------------------- */
+
+.p-hero {
+	position: relative;
+	background: var(--c-bg-subtle);
+	overflow: hidden;
+}
+
+.p-hero__inner {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+	align-items: center;
+	gap: var(--space-8);
+	max-width: calc(var(--w-wide) + var(--gutter) * 2);
+	margin-inline: auto;
+	padding: var(--space-9) var(--gutter);
+}
+
+.p-hero__label {
+	margin-bottom: var(--space-4);
+	color: var(--c-primary);
+	font-family: var(--ff-en);
+	font-size: var(--fs-xs);
+	font-weight: var(--fw-bold);
+	letter-spacing: var(--ls-wide);
+}
+
+.p-hero__title {
+	font-size: var(--fs-4xl);
+	line-height: 1.35;
+	letter-spacing: 0.04em;
+}
+
+.p-hero__title span { display: block; }
+
+.p-hero__lead {
+	margin-top: var(--space-5);
+	color: var(--c-text-weak);
+	font-size: var(--fs-md);
+}
+
+.p-hero__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-4);
+	margin-top: var(--space-6);
+}
+
+.p-hero__visual img {
+	width: 100%;
+	aspect-ratio: 16 / 10;
+	object-fit: cover;
+	border-radius: var(--radius-lg);
+}
+
+/* --- トップ: 事業内容 ----------------------------------- */
+
+.p-home-business { padding-block: var(--section-py); }
+
+.p-home-business__list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: var(--space-6);
+}
+
+.p-home-business__thumb {
+	margin-bottom: var(--space-4);
+	aspect-ratio: 4 / 3;
+	overflow: hidden;
+	border-radius: var(--radius);
+	background: var(--c-bg-subtle);
+}
+
+.p-home-business__thumb img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.p-home-business__title {
+	margin-bottom: var(--space-2);
+	font-size: var(--fs-xl);
+}
+
+.p-home-business__text {
+	color: var(--c-text-weak);
+	font-size: var(--fs-sm);
+}
+
+.p-home-business__more,
+.p-home-news__more,
+.p-home-company__more {
+	margin-top: var(--space-7);
+	text-align: center;
+}
+
+/* --- トップ: 選ばれる理由 ------------------------------- */
+
+.p-home-strength {
+	padding-block: var(--section-py);
+	background: var(--c-bg-dark);
+	color: rgba(255, 255, 255, 0.85);
+}
+
+.p-home-strength__list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: var(--space-6);
+}
+
+.p-home-strength__item {
+	padding: var(--space-5);
+	border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.p-home-strength__num {
+	margin-bottom: var(--space-3);
+	color: var(--c-text-inverse);
+	font-family: var(--ff-en);
+	font-size: var(--fs-2xl);
+	font-weight: var(--fw-bold);
+	line-height: 1;
+	opacity: 0.4;
+}
+
+.p-home-strength__item h3 {
+	margin-bottom: var(--space-2);
+	color: var(--c-text-inverse);
+	font-size: var(--fs-lg);
+}
+
+.p-home-strength__item p { font-size: var(--fs-sm); }
+
+/* --- トップ: お知らせ ----------------------------------- */
+
+.p-home-news { padding-block: var(--section-py); }
+
+.p-home-news__list {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: var(--space-5);
+}
+
+.p-home-news__empty,
+.p-news__empty {
+	padding-block: var(--space-7);
+	color: var(--c-text-weak);
+	text-align: center;
+}
+
+/* --- トップ: 会社概要 ----------------------------------- */
+
+.p-home-company {
+	padding-block: var(--section-py);
+	background: var(--c-bg-subtle);
+}
+
+.p-home-company__inner {
+	max-width: var(--w-narrow);
+	margin-inline: auto;
+}
+
+.p-home-company__table { border-top: 1px solid var(--c-border); }
+
+.p-home-company__table > div {
+	display: grid;
+	grid-template-columns: 160px 1fr;
+	padding: var(--space-4) 0;
+	border-bottom: 1px solid var(--c-border);
+	font-size: var(--fs-sm);
+}
+
+.p-home-company__table dt { font-weight: var(--fw-bold); }
+
+/* --- 会社概要 ------------------------------------------- */
+
+.p-company-message { padding-block: var(--section-py); }
+
+.p-company-message__inner {
+	display: grid;
+	grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+	gap: var(--space-7);
+	align-items: start;
+}
+
+.p-company-message__text p + p { margin-top: var(--space-4); }
+
+.p-company-message__sign {
+	margin-top: var(--space-6);
+	font-weight: var(--fw-bold);
+	text-align: right;
+}
+
+.p-company-message__photo img {
+	width: 100%;
+	aspect-ratio: 4 / 5;
+	object-fit: cover;
+	border-radius: var(--radius);
+	background: var(--c-bg-subtle);
+}
+
+.p-company-outline,
+.p-company-history,
+.p-company-access {
+	padding-block: var(--section-py);
+}
+
+.p-company-outline { background: var(--c-bg-subtle); }
+
+.p-company-access__inner {
+	display: grid;
+	grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+	gap: var(--space-6);
+}
+
+.p-company-access__map iframe {
+	display: block;
+	border-radius: var(--radius);
+}
+
+.p-company-access__address {
+	margin-bottom: var(--space-4);
+	font-size: var(--fs-md);
+	font-weight: var(--fw-bold);
+}
+
+/* --- 事業・製品 ----------------------------------------- */
+
+.p-business-intro {
+	padding-block: var(--space-8);
+	text-align: center;
+}
+
+.p-business-intro__lead {
+	font-size: var(--fs-lg);
+	line-height: 2;
+}
+
+.p-business-fields { padding-bottom: var(--section-py); }
+
+.p-business-field {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: var(--space-7);
+	align-items: center;
+	padding-block: var(--space-7);
+}
+
+.p-business-field + .p-business-field { border-top: 1px solid var(--c-border); }
+
+.p-business-field--reverse .p-business-field__visual { order: 2; }
+
+.p-business-field__visual img {
+	width: 100%;
+	aspect-ratio: 3 / 2;
+	object-fit: cover;
+	border-radius: var(--radius);
+	background: var(--c-bg-subtle);
+}
+
+.p-business-field__title {
+	margin-bottom: var(--space-3);
+	font-size: var(--fs-2xl);
+}
+
+.p-business-field__text {
+	margin-bottom: var(--space-5);
+	color: var(--c-text-weak);
+}
+
+.p-business-products {
+	padding-block: var(--section-py);
+	background: var(--c-bg-subtle);
+}
+
+.p-business-products__note {
+	margin-bottom: var(--space-6);
+	text-align: center;
+}
+
+.p-business-products__note-sub {
+	display: block;
+	margin-top: var(--space-1);
+	color: var(--c-text-weak);
+	font-size: var(--fs-xs);
+}
+
+.p-business-products__list {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--space-4);
+}
+
+.p-business-products__item {
+	padding: var(--space-5);
+	background: var(--c-bg);
+	border: 1px solid var(--c-border);
+	transition: border-color var(--duration) var(--ease);
+}
+
+.p-business-products__item:hover { border-color: var(--c-primary); }
+
+.p-business-products__link {
+	font-size: var(--fs-md);
+	font-weight: var(--fw-bold);
+}
+
+.p-business-products__desc {
+	margin-top: var(--space-1);
+	color: var(--c-text-weak);
+	font-size: var(--fs-sm);
+}
+
+.p-business-products__all {
+	margin-top: var(--space-6);
+	text-align: center;
+}
+
+/* --- 品質・技術 ----------------------------------------- */
+
+.p-quality-policy { padding-block: var(--section-py); }
+
+.p-quality-policy__lead {
+	margin-bottom: var(--space-7);
+	font-size: var(--fs-lg);
+	line-height: 2;
+	text-align: center;
+}
+
+.p-quality-policy__list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: var(--space-5);
+}
+
+.p-quality-policy__list li {
+	padding: var(--space-5);
+	background: var(--c-bg-subtle);
+	border-top: 3px solid var(--c-primary);
+}
+
+.p-quality-policy__list h3 {
+	margin-bottom: var(--space-2);
+	font-size: var(--fs-md);
+}
+
+.p-quality-policy__list p {
+	color: var(--c-text-weak);
+	font-size: var(--fs-sm);
+}
+
+.p-quality-flow { padding-block: var(--section-py); background: var(--c-bg-subtle); }
+.p-quality-equipment { padding-block: var(--section-py); }
+
+/* --- 採用 ----------------------------------------------- */
+
+.p-recruit-message {
+	padding-block: var(--section-py);
+	text-align: center;
+}
+
+.p-recruit-message__lead {
+	margin-bottom: var(--space-4);
+	font-size: var(--fs-2xl);
+	font-weight: var(--fw-bold);
+}
+
+.p-recruit-message__text {
+	max-width: var(--w-narrow);
+	margin-inline: auto;
+	color: var(--c-text-weak);
+}
+
+.p-recruit-positions { padding-bottom: var(--section-py); }
+
+.p-recruit-position + .p-recruit-position { margin-top: var(--space-7); }
+
+.p-recruit-position__title {
+	margin-bottom: var(--space-4);
+	padding-left: var(--space-3);
+	border-left: 4px solid var(--c-primary);
+	font-size: var(--fs-xl);
+}
+
+.p-recruit-positions__cta {
+	margin-top: var(--space-8);
+	padding: var(--space-6);
+	background: var(--c-bg-subtle);
+	text-align: center;
+}
+
+.p-recruit-positions__cta p { margin-bottom: var(--space-4); }
+
+.p-recruit-news { padding-bottom: var(--section-py); }
+
+.p-recruit-news__list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: var(--space-5);
+}
+
+/* --- お問い合わせ --------------------------------------- */
+
+.p-contact { padding-block: var(--section-py); }
+
+.p-contact__lead {
+	text-align: center;
+	line-height: 2;
+}
+
+.p-contact__required-note {
+	color: var(--c-text-weak);
+	font-size: var(--fs-sm);
+}
+
+.p-contact__complete {
+	padding: var(--space-8) var(--space-6);
+	background: var(--c-bg-subtle);
+	text-align: center;
+}
+
+.p-contact__complete-title {
+	margin-bottom: var(--space-5);
+	font-size: var(--fs-2xl);
+}
+
+.p-contact__complete p + p { margin-top: var(--space-4); }
+
+.p-contact__complete-back { margin-top: var(--space-7); }
+
+.p-contact__tel {
+	margin-top: var(--space-8);
+	padding: var(--space-6);
+	border: 1px solid var(--c-border);
+	text-align: center;
+}
+
+.p-contact__tel-title {
+	margin-bottom: var(--space-2);
+	font-size: var(--fs-md);
+}
+
+.p-contact__tel-num a {
+	font-family: var(--ff-en);
+	font-size: var(--fs-3xl);
+	font-weight: var(--fw-bold);
+	line-height: 1.2;
+}
+
+.p-contact__tel-hours {
+	color: var(--c-text-weak);
+	font-size: var(--fs-xs);
+}
+
+/* --- お知らせ一覧・詳細 --------------------------------- */
+
+.p-news { padding-block: var(--section-py); }
+
+.p-news__list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: var(--space-5);
+}
+
+.p-news-detail { padding-block: var(--section-py); }
+
+.p-news-detail__head {
+	margin-bottom: var(--space-6);
+	padding-bottom: var(--space-5);
+	border-bottom: 1px solid var(--c-border);
+}
+
+.p-news-detail__meta {
+	display: flex;
+	align-items: center;
+	gap: var(--space-3);
+	margin-bottom: var(--space-3);
+}
+
+.p-news-detail__meta time {
+	color: var(--c-text-weak);
+	font-family: var(--ff-en);
+	font-size: var(--fs-sm);
+}
+
+.p-news-detail__title {
+	font-size: var(--fs-2xl);
+	line-height: 1.6;
+}
+
+.p-news-detail__thumb { margin-bottom: var(--space-6); }
+
+.p-news-detail__thumb img {
+	width: 100%;
+	border-radius: var(--radius);
+}
+
+/* 本文はクライアントがエディタで書く領域。
+   どの要素が来ても崩れないよう、ここで一通り面倒を見ておく。 */
+.p-news-detail__body,
+.p-page__body {
+	line-height: 2;
+}
+
+.p-news-detail__body > * + *,
+.p-page__body > * + * {
+	margin-top: var(--space-4);
+}
+
+.p-news-detail__body h2,
+.p-page__body h2 {
+	margin-top: var(--space-7);
+	padding-bottom: var(--space-2);
+	border-bottom: 2px solid var(--c-primary);
+	font-size: var(--fs-xl);
+}
+
+.p-news-detail__body h3,
+.p-page__body h3 {
+	margin-top: var(--space-6);
+	font-size: var(--fs-lg);
+}
+
+.p-news-detail__body ul,
+.p-page__body ul {
+	padding-left: 1.6em;
+	list-style: disc;
+}
+
+.p-news-detail__body ol,
+.p-page__body ol {
+	padding-left: 1.6em;
+	list-style: decimal;
+}
+
+.p-news-detail__body li + li,
+.p-page__body li + li {
+	margin-top: var(--space-1);
+}
+
+.p-news-detail__body a,
+.p-page__body a {
+	text-decoration: underline;
+}
+
+.p-news-detail__body img,
+.p-page__body img {
+	border-radius: var(--radius);
+}
+
+.p-news-detail__body blockquote,
+.p-page__body blockquote {
+	padding: var(--space-4) var(--space-5);
+	background: var(--c-bg-subtle);
+	border-left: 3px solid var(--c-border-strong);
+	color: var(--c-text-weak);
+}
+
+.p-news-detail__body table,
+.p-page__body table {
+	border: 1px solid var(--c-border);
+	font-size: var(--fs-sm);
+}
+
+.p-news-detail__body th,
+.p-news-detail__body td,
+.p-page__body th,
+.p-page__body td {
+	padding: var(--space-3);
+	border: 1px solid var(--c-border);
+}
+
+/* --- 固定ページ / 404 ----------------------------------- */
+
+.p-page { padding-block: var(--section-py); }
+
+.p-404 {
+	padding-block: var(--section-py);
+	text-align: center;
+}
+
+.p-404__lead {
+	margin-bottom: var(--space-6);
+	line-height: 2;
+}
+
+.p-404__links {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: var(--space-4);
+}
+
+.p-404__links a { text-decoration: underline; }
+
+/* ============================================================
+   SP
+   ============================================================ */
+
+@media (max-width: 1024px) {
+	.p-home-news__list { grid-template-columns: repeat(2, 1fr); }
+	.p-news__list { grid-template-columns: repeat(2, 1fr); }
+	.p-recruit-news__list { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 767px) {
+	.p-hero__inner {
+		grid-template-columns: 1fr;
+		gap: var(--space-6);
+		padding-block: var(--space-7);
+	}
+
+	.p-hero__visual { order: -1; }
+
+	.p-home-business__list,
+	.p-home-strength__list,
+	.p-home-news__list,
+	.p-news__list,
+	.p-recruit-news__list,
+	.p-quality-policy__list,
+	.p-business-products__list {
+		grid-template-columns: 1fr;
+	}
+
+	.p-home-company__table > div { grid-template-columns: 1fr; gap: 0; padding-block: var(--space-3); }
+	.p-home-company__table dt { margin-bottom: var(--space-1); }
+
+	.p-company-message__inner,
+	.p-company-access__inner,
+	.p-business-field {
+		grid-template-columns: 1fr;
+		gap: var(--space-5);
+	}
+
+	.p-company-message__photo { order: -1; }
+	.p-business-field--reverse .p-business-field__visual { order: 0; }
+
+	.p-contact__tel-num a,
+	.p-news-detail__title { font-size: var(--fs-xl); }
+
+	.p-404__links { flex-direction: column; gap: var(--space-3); }
+}
