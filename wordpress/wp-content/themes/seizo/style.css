@@ -1,0 +1,23 @@
+/*
+Theme Name:  Seizo Corporate
+Theme URI:   https://example.co.jp/
+Author:      (freelance build)
+Description: 名古屋の製造業コーポレートサイト用カスタムテーマ。Illustrator 入稿デザインをピクセル単位で再現するための、ビルド工程なし・依存なしのクラシックテーマ。既製テーマ／テーマフレームワークは一切使用していません。
+Version:     1.0.0
+Requires at least: 6.4
+Tested up to: 6.6
+Requires PHP: 8.0
+License:     Proprietary — client work for hire
+Text Domain: seizo
+Tags:        corporate, custom-template, ja
+*/
+
+/*
+ * このファイルはテーマヘッダー専用です。
+ * 実際のスタイルは assets/css/ 配下に分割して読み込んでいます。
+ *   tokens.css     — デザイントークン（色・余白・級数）。AI 入稿値をここに集約
+ *   base.css       — リセットとタイポグラフィ
+ *   components.css — ヘッダー／フッター／ボタン等の共通パーツ
+ *   pages.css      — 各ページ固有のレイアウト
+ * 読み込み順は inc/assets.php で管理しています。
+ */
