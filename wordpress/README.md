@@ -135,6 +135,12 @@ grep -rn "★" wp-content/themes/seizo/
 # ロジックの検証（WordPress の起動不要。36 項目）
 php tests/run.php
 
+# テンプレートの描画検証（109 項目）
+php tests/render.php
+
+# 静的プレビューの書き出し（Docker なしで見た目を確認する用）
+php tests/preview.php /tmp/seizo-preview
+
 # PHP 構文チェック
 find wp-content/themes/seizo -name "*.php" -exec php -l {} \;
 
@@ -145,4 +151,14 @@ node --check wp-content/themes/seizo/assets/js/contact.js
 
 `tests/run.php` は WordPress の関数をスタブ化して、フォームの入力検証・
 ボット対策・レート制限・メールヘッダの安全性・郵便番号の検索とキャッシュを
-確認します。実ブラウザでの表示確認は `docker compose up -d` で行ってください。
+確認します。
+
+`tests/render.php` は全テンプレートを実際に実行し、実行時エラーが出ないこと・
+HTML のタグが閉じていること・出力がエスケープされていることを確認します。
+`php -l` では見つからない種類の不具合を拾うためのものです。
+
+`tests/preview.php` は CSS を埋め込んだ単体で開ける HTML を書き出します。
+Docker を立てずにデザインの当たりを見るためのもので、納品物には含めません。
+
+実ブラウザでの最終確認（JS の挙動・メール送信・郵便番号検索）は
+`docker compose up -d` で行ってください。
